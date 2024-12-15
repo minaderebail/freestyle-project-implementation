@@ -1,0 +1,15 @@
+# this is the "requirements.txt" file...
+
+python-dotenv
+
+requests
+
+pandas
+
+plotly
+
+pytest
+
+flask
+
+gunicorn
