@@ -5,17 +5,22 @@
 
     <h2>Inflation Rates in the US</h2>
 
+    <hr> </hr>
+    
+    <h4>Summary: </h4>
     <p> </p>
-    <p>Wikipedia Summary: </p>
-    <p>"Inflation is the increase in the prices of goods and services in an economy. 
+    <p> "Inflation is the increase in the prices of goods and services in an economy. 
         Essentially, inflation corresponds to a reduction in the purchasing power of money.
         The inflation rate is the annualized percentage change in a general price index. 
         As prices faced by households do not all increase at the same rate, 
         the consumer price index (CPI), which is a fixed basket of goods & services, 
         is often used for this purpose."
-        [Source: https://en.wikipedia.org/wiki/Inflation]
+        <a href="https://en.wikipedia.org/wiki/Inflation" target="_blank">[Read more here]</a>
     </p> 
+    <p> </p>
 
+    <hr> </hr>
+    <h4>Data: </h4>
     <div id="chart-container" height="700px"></div>
 
     <table class="table table-hover table-responsive caption-top">
@@ -38,6 +43,7 @@
         </tbody>
     </table>
 
+    <hr> </hr>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script type="text/javascript">
 
@@ -58,14 +64,19 @@
         }
         var data = [series]
         var layout = {
-            title: "Inflation Rate by Year",
+            title: "Inflation Rate over Time",
             height: 500,
+            xaxis: {
+                title: "Year"
+            },
             yaxis: {
+                title: "Inflation Rate (%)",
                 tickformat: '.1%'
             }
         }
         Plotly.newPlot("chart-container", data, layout, {responsive: true})
 
     </script>
+    <hr> </hr>
 
 {% endblock %}

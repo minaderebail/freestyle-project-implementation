@@ -3,6 +3,7 @@
 import os
 from flask import Flask
 
+from web_app.routes.comparison_routes import comparison_routes
 from web_app.routes.home_routes import home_routes
 from web_app.routes.inflation_routes import inflation_routes
 from web_app.routes.interest_routes import interest_routes
@@ -15,6 +16,7 @@ def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = SECRET_KEY
 
+    app.register_blueprint(comparison_routes)
     app.register_blueprint(home_routes)
     app.register_blueprint(inflation_routes)
     app.register_blueprint(interest_routes)

@@ -5,13 +5,20 @@
 
     <h2>Unemployment Rates in the US</h2>
 
+    <hr> </hr>
+    
+    <h4>Summary: </h4>
     <p> </p>
-    <p>Wikipedia Summary: </p>
-    <p>"Unemployment is measured by the unemployment rate, 
+    <p> "Unemployment is measured by the unemployment rate, 
         which is the number of people who are unemployed as a percentage of the labor force 
         (the total number of people employed added to those unemployed)."
-        [Source: https://en.wikipedia.org/wiki/Unemployment]
+        <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank">[Read more here]</a>
     </p> 
+    <p> </p>
+
+    <hr> </hr>
+    <h4>Data: </h4>
+    <p> </p> 
 
     <div id="chart-container" height="700px"></div>
 
@@ -35,6 +42,7 @@
         </tbody>
     </table>
 
+    <hr> </hr>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script type="text/javascript">
 
@@ -55,14 +63,19 @@
         }
         var data = [series]
         var layout = {
-            title: "Unemployment Rate by Month",
+            title: "Unemployment Rate over Time",
             height: 500,
+            xaxis: {
+                title: "Month"
+            },
             yaxis: {
+                title: "Unemployment Rate (%)",
                 tickformat: '.1%'
             }
         }
         Plotly.newPlot("chart-container", data, layout, {responsive: true})
 
     </script>
+    <hr> </hr>
 
 {% endblock %}

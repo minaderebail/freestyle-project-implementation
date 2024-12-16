@@ -5,9 +5,11 @@
 
     <h2>10-year Treasury Yield Rates in the US</h2>
 
+    <hr> </hr>
+    
+    <h4>Summary: </h4>
     <p> </p>
-    <p>SmartAsset Summary: </p>
-    <p>"A treasury yield represents the return on investment for U.S. government bonds, 
+    <p> "A treasury yield represents the return on investment for U.S. government bonds, 
         which are debt securities issued by the U.S. Treasury. Investors buy these bonds, 
         effectively lending money to the government in exchange for a predictable interest 
         payment over time. Treasury yields are influenced by supply and demand in the bond market, 
@@ -16,8 +18,13 @@
         The yield is essentially the interest earned, expressed as a percentage of the bond's price.
         Treasury securities have varying maturities."
         Here, the 10 year maturity rate is used.
-        [Source: https://smartasset.com/investing/treasury-yields]
+        <a href="https://smartasset.com/investing/treasury-yields" target="_blank">[Read more here]</a>
     </p> 
+    <p> </p>
+
+    <hr> </hr>
+    <h4>Data: </h4>
+    <p> </p> 
 
     <div id="chart-container" height="700px"></div>
 
@@ -41,6 +48,7 @@
         </tbody>
     </table>
 
+    <hr> </hr>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script type="text/javascript">
 
@@ -61,14 +69,19 @@
         }
         var data = [series]
         var layout = {
-            title: "10-year Treasury Yield Rate by Month",
+            title: "Treasury Yield Rate over Time",
             height: 500,
+            xaxis: {
+                title: "Month"
+            },
             yaxis: {
+                title: "10-year Treasury Yield Rate (%)",
                 tickformat: '.1%'
             }
         }
         Plotly.newPlot("chart-container", data, layout, {responsive: true})
 
     </script>
+    <hr> </hr>
 
 {% endblock %}
