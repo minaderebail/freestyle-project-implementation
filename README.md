@@ -48,6 +48,11 @@ Run the interest rate analysis:
 python -m app.interest
 ```
 
+Run the 10-year treasury yield rate analysis:
+
+```sh
+python -m app.treasury_yield
+```
 
 Run the unemployment rate analysis:
 

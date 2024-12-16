@@ -1,0 +1,74 @@
+{% extends "bootstrap_5_layout.html" %}
+{% set active_page = "treasury_yield" %}
+
+{% block content %}
+
+    <h2>10-year Treasury Yield Rates in the US</h2>
+
+    <p> </p>
+    <p>SmartAsset Summary: </p>
+    <p>"A treasury yield represents the return on investment for U.S. government bonds, 
+        which are debt securities issued by the U.S. Treasury. Investors buy these bonds, 
+        effectively lending money to the government in exchange for a predictable interest 
+        payment over time. Treasury yields are influenced by supply and demand in the bond market, 
+        and they help indicate broader economic conditions, 
+        such as investor confidence and interest rate expectations.
+        The yield is essentially the interest earned, expressed as a percentage of the bond's price.
+        Treasury securities have varying maturities."
+        Here, the 10 year maturity rate is used.
+        [Source: https://smartasset.com/investing/treasury-yields]
+    </p> 
+
+    <div id="chart-container" height="700px"></div>
+
+    <table class="table table-hover table-responsive caption-top">
+        <caption>10-year treasury yield rates in the US over the last 10 months:</caption>
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Treasury Yield Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for row in data[0:10] %}
+            <tr>
+                <td>{{ row["date"] }}</td>
+                <td>{{ row["value"] | round(2) }}%</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript">
+
+        console.log("TREASURY YIELD DASHBOARD...")
+
+        // use data from the router
+        var treasuryData = JSON.parse('{{data | tojson}}')
+        console.log(treasuryData)
+
+        var dates = treasuryData.map(obj => obj["date"])
+        var rates = treasuryData.map(obj => parseFloat(obj["value"]) / 100.0)
+
+        // visualize the data
+        var series = {
+            x: dates,
+            y: rates,
+            mode: "lines+markers"
+        }
+        var data = [series]
+        var layout = {
+            title: "10-year Treasury Yield Rate by Month",
+            height: 500,
+            yaxis: {
+                tickformat: '.1%'
+            }
+        }
+        Plotly.newPlot("chart-container", data, layout, {responsive: true})
+
+    </script>
+
+{% endblock %}

@@ -5,6 +5,22 @@
 
     <h2>Interest Rates in the US</h2>
 
+    <p> </p>
+    <p>Wikipedia Summary: </p>
+    <p>"An interest rate is the amount of interest due per period, 
+        as a proportion of the amount lent, deposited, or borrowed (called the principal sum). 
+        The total interest on an amount lent or borrowed depends on 
+        the principal sum, the interest rate, the compounding frequency, 
+        and the length of time over which it is lent, deposited, or borrowed.
+        The interest rate has been characterized as an index of the preference 
+        for a dollar of present income over a dollar of future income.
+        Interest rates are a vital tool of monetary policy, 
+        and central banks change them to impact investment and consumption.
+        In the US, the interest rate is called the federal funds rate, 
+        and it is set by the Federal Reserve."
+        [Source: https://en.wikipedia.org/wiki/Interest_rate]
+    </p> 
+
     <div id="chart-container" height="700px"></div>
 
     <table class="table table-hover table-responsive caption-top">
@@ -32,15 +48,14 @@
 
         console.log("INTEREST DASHBOARD...")
 
-        // use data from the router!
-        var interestData = JSON.parse('{{data | tojson}}') // https://stackoverflow.com/a/45132694/670433
+        // use data from the router
+        var interestData = JSON.parse('{{data | tojson}}') 
         console.log(interestData)
 
         var dates = interestData.map(obj => obj["date"])
         var rates = interestData.map(obj => parseFloat(obj["value"]) / 100.0)
 
         // visualize the data
-        // see: https://plotly.com/javascript/line-charts/
         var series = {
             x: dates,
             y: rates,
@@ -51,8 +66,7 @@
             title: "Interest Rate by Month",
             height: 500,
             yaxis: {
-                //tickformat: '%' // https://plotly.com/javascript/tick-formatting/
-                tickformat: '.1%' // https://stackoverflow.com/questions/42043633/format-y-axis-as-percent-in-plot-ly
+                tickformat: '.1%'
             }
         }
         Plotly.newPlot("chart-container", data, layout, {responsive: true})

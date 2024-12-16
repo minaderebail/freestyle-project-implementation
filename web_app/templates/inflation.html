@@ -5,6 +5,17 @@
 
     <h2>Inflation Rates in the US</h2>
 
+    <p> </p>
+    <p>Wikipedia Summary: </p>
+    <p>"Inflation is the increase in the prices of goods and services in an economy. 
+        Essentially, inflation corresponds to a reduction in the purchasing power of money.
+        The inflation rate is the annualized percentage change in a general price index. 
+        As prices faced by households do not all increase at the same rate, 
+        the consumer price index (CPI), which is a fixed basket of goods & services, 
+        is often used for this purpose."
+        [Source: https://en.wikipedia.org/wiki/Inflation]
+    </p> 
+
     <div id="chart-container" height="700px"></div>
 
     <table class="table table-hover table-responsive caption-top">
@@ -32,15 +43,14 @@
 
         console.log("INFLATION DASHBOARD...")
 
-        // use data from the router!
-        var inflationData = JSON.parse('{{data | tojson}}') // https://stackoverflow.com/a/45132694/670433
+        // use data from the router
+        var inflationData = JSON.parse('{{data | tojson}}')
         console.log(inflationData)
 
         var dates = inflationData.map(obj => obj["date"])
         var rates = inflationData.map(obj => parseFloat(obj["value"]) / 100.0)
 
         // visualize the data
-        // see: https://plotly.com/javascript/line-charts/
         var series = {
             x: dates,
             y: rates,
@@ -51,8 +61,7 @@
             title: "Inflation Rate by Year",
             height: 500,
             yaxis: {
-                //tickformat: '%' // https://plotly.com/javascript/tick-formatting/
-                tickformat: '.1%' // https://stackoverflow.com/questions/42043633/format-y-axis-as-percent-in-plot-ly
+                tickformat: '.1%'
             }
         }
         Plotly.newPlot("chart-container", data, layout, {responsive: true})
