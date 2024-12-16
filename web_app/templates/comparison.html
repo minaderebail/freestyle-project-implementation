@@ -11,26 +11,39 @@
     <script type="text/javascript">
         console.log("COMPARISON DASHBOARD...");
     
-        // Fetch data from the API
+        // fetch data from the API
         fetch('/api/comparison.json')
             .then(response => response.json())
             .then(data => {
-                // Access the data from the response
+                // access the data
+                var inflationData = data.inflation;
                 var interestData = data.interest;
                 var treasuryData = data.treasury_yield;
                 var unemploymentData = data.unemployment;
     
+                console.log(inflationData);
                 console.log(interestData);
                 console.log(treasuryData);
                 console.log(unemploymentData);
     
-                // Extract dates and values
+                // extract dates and values
                 var dates = interestData.map(obj => obj["date"]);
                 var interestRates = interestData.map(obj => parseFloat(obj["value"]) / 100.0);
                 var treasuryRates = treasuryData.map(obj => parseFloat(obj["value"]) / 100.0);
                 var unemploymentRates = unemploymentData.map(obj => parseFloat(obj["value"]) / 100.0);
     
-                // Create series for all three variables
+                // extract dates and values for inflation separately because yearly not monthly
+                var inflationRates = inflationData.map(obj => parseFloat(obj["value"]) / 100.0);
+                var inflationDates = inflationData.map(obj => obj["date"]);
+
+                // create series for all 4 variables
+                var inflationSeries = {
+                    x: inflationDates,
+                    y: inflationRates,
+                    mode: "lines+markers",
+                    name: "Inflation Rate",
+                };
+
                 var interestSeries = {
                     x: dates,
                     y: interestRates,
@@ -42,7 +55,7 @@
                     x: dates,
                     y: treasuryRates,
                     mode: "lines+markers",
-                    name: "Treasury Rate"
+                    name: "Treasury Yield Rate"
                 };
     
                 var unemploymentSeries = {
@@ -52,15 +65,15 @@
                     name: "Unemployment Rate"
                 };
     
-                // Combine the series into an array
-                var data = [interestSeries, treasurySeries, unemploymentSeries];
+                // put all 4 series into one array
+                var data = [inflationSeries, interestSeries, treasurySeries, unemploymentSeries];
     
-                // Define the layout
+                // plot chart
                 var layout = {
                     title: "Comparison of Economic Indicators",
                     height: 500,
                     xaxis: {
-                        title: "Year"
+                        title: "Time"
                     },
                     yaxis: {
                         title: "Rate (%)",
@@ -73,9 +86,9 @@
                     }
                 };
     
-                // Plot the chart
                 Plotly.newPlot("chart-container", data, layout, {responsive: true});
             })
+
             .catch(error => {
                 console.error("Error fetching data: ", error);
             });
