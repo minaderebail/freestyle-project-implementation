@@ -5,9 +5,11 @@
 
     <h2>Interest Rates in the US</h2>
 
+    <hr> </hr>
+    
+    <h4>Summary: </h4>
     <p> </p>
-    <p>Wikipedia Summary: </p>
-    <p>"An interest rate is the amount of interest due per period, 
+    <p> "An interest rate is the amount of interest due per period, 
         as a proportion of the amount lent, deposited, or borrowed (called the principal sum). 
         The total interest on an amount lent or borrowed depends on 
         the principal sum, the interest rate, the compounding frequency, 
@@ -16,10 +18,16 @@
         for a dollar of present income over a dollar of future income.
         Interest rates are a vital tool of monetary policy, 
         and central banks change them to impact investment and consumption.
-        In the US, the interest rate is called the federal funds rate, 
+        In the US, the interest rate is called the federal funds rate. It is 
+        the rate at which banks borrow from each other, 
         and it is set by the Federal Reserve."
-        [Source: https://en.wikipedia.org/wiki/Interest_rate]
+        <a href="https://en.wikipedia.org/wiki/Interest_rate" target="_blank">[Read more here]</a>
     </p> 
+    <p> </p>
+
+    <hr> </hr>
+    <h4>Data: </h4>
+    <p> </p> 
 
     <div id="chart-container" height="700px"></div>
 
@@ -43,6 +51,7 @@
         </tbody>
     </table>
 
+    <hr> </hr>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script type="text/javascript">
 
@@ -63,14 +72,19 @@
         }
         var data = [series]
         var layout = {
-            title: "Interest Rate by Month",
+            title: "Interest Rate over Time",
             height: 500,
+            xaxis: {
+                title: "Month"
+            },
             yaxis: {
+                title: "Interest Rate (%)",
                 tickformat: '.1%'
             }
         }
         Plotly.newPlot("chart-container", data, layout, {responsive: true})
 
     </script>
+    <hr> </hr>
 
 {% endblock %}
