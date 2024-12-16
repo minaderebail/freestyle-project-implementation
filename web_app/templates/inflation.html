@@ -1,18 +1,18 @@
 {% extends "bootstrap_5_layout.html" %}
-{% set active_page = "unemployment" %}
+{% set active_page = "inflation" %}
 
 {% block content %}
 
-    <h2>Unemployment Rates in the US</h2>
+    <h2>Inflation Rates in the US</h2>
 
     <div id="chart-container" height="700px"></div>
 
     <table class="table table-hover table-responsive caption-top">
-        <caption>Unemployment rates in the US over the last 10 months:</caption>
+        <caption>Inflation rates in the US over the last 10 years:</caption>
         <thead>
             <tr>
                 <th scope="col">Date</th>
-                <th scope="col">Unemployment Rate</th>
+                <th scope="col">Inflation Rate</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +20,7 @@
         {% for row in data[0:10] %}
             <tr>
                 <td>{{ row["date"] }}</td>
-                <td>{{ row["value"] }}%</td>
+                <td>{{ row["value"] | round(2) }}%</td>
             </tr>
         {% endfor %}
 
@@ -30,14 +30,14 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script type="text/javascript">
 
-        console.log("UNEMPLOYMENT DASHBOARD...")
+        console.log("INFLATION DASHBOARD...")
 
         // use data from the router!
-        var unemploymentData = JSON.parse('{{data | tojson}}') // https://stackoverflow.com/a/45132694/670433
-        console.log(unemploymentData)
+        var inflationData = JSON.parse('{{data | tojson}}') // https://stackoverflow.com/a/45132694/670433
+        console.log(inflationData)
 
-        var dates = unemploymentData.map(obj => obj["date"])
-        var rates = unemploymentData.map(obj => parseFloat(obj["value"]) / 100.0)
+        var dates = inflationData.map(obj => obj["date"])
+        var rates = inflationData.map(obj => parseFloat(obj["value"]) / 100.0)
 
         // visualize the data
         // see: https://plotly.com/javascript/line-charts/
@@ -48,7 +48,7 @@
         }
         var data = [series]
         var layout = {
-            title: "Unemployment Rate by Month",
+            title: "Inflation Rate by Year",
             height: 500,
             yaxis: {
                 //tickformat: '%' // https://plotly.com/javascript/tick-formatting/

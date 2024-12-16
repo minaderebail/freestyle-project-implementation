@@ -40,6 +40,7 @@
         https://getbootstrap.com/docs/5.0/components/navbar/
     -->
     {% set nav_links = [
+        ('/inflation', 'inflation', 'Inflation'),
         ('/unemployment', 'unemployment', 'Unemployment'),
     ] -%}
     {% set active_page = active_page|default('home') -%}
@@ -90,8 +91,7 @@
 
         <footer style="margin-top:2em; margin-bottom:2em;">
         <hr>
-            &copy; Copyright 2024 [Mina Derebail] |
-            <a href="https://github.com/prof-rossetti/intro-to-python/blob/main/exercises/web-app-2023/README.md">Source</a>
+            &copy; Copyright 2024 [Mina Derebail]
         </footer>
     </div>
 
