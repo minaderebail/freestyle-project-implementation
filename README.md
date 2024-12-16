@@ -73,3 +73,10 @@ FLASK_APP=web_app flask run
 export FLASK_APP=web_app
 flask run
 ```
+
+## Testing
+
+Run tests:
+```sh
+pytest
+```
