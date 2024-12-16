@@ -40,8 +40,9 @@
         https://getbootstrap.com/docs/5.0/components/navbar/
     -->
     {% set nav_links = [
-        ('/inflation', 'inflation', 'Inflation'),
-        ('/unemployment', 'unemployment', 'Unemployment'),
+        ('/inflation', 'inflation', 'Inflation Rate'),
+        ('/interest', 'interest', 'Interest Rate'),
+        ('/unemployment', 'unemployment', 'Unemployment Rate'),
     ] -%}
     {% set active_page = active_page|default('home') -%}
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">

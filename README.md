@@ -36,13 +36,20 @@ ALPHAVANTAGE_API_KEY="..."
 
 ## Usage
 
-Run the inflation analysis:
+Run the inflation rate analysis:
 
 ```sh
 python -m app.inflation
 ```
 
-Run the unemployment analysis:
+Run the interest rate analysis:
+
+```sh
+python -m app.interest
+```
+
+
+Run the unemployment rate analysis:
 
 ```sh
 python -m app.unemployment

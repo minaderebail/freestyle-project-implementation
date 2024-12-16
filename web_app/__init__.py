@@ -5,6 +5,7 @@ from flask import Flask
 
 from web_app.routes.home_routes import home_routes
 from web_app.routes.inflation_routes import inflation_routes
+from web_app.routes.interest_routes import interest_routes
 from web_app.routes.unemployment_routes import unemployment_routes
 
 SECRET_KEY = os.getenv("SECRET_KEY", default="super secret") # set this to something else on production
@@ -15,6 +16,7 @@ def create_app():
 
     app.register_blueprint(home_routes)
     app.register_blueprint(inflation_routes)
+    app.register_blueprint(interest_routes)
     app.register_blueprint(unemployment_routes)
     return app
 
